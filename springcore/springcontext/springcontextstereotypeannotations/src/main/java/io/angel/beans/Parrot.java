@@ -1,4 +1,4 @@
-package io.angel.main;
+package io.angel.beans;
 
 import org.springframework.stereotype.Component;
 

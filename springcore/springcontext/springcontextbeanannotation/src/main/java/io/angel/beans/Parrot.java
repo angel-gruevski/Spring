@@ -1,7 +1,6 @@
-package io.angel.main;
+package io.angel.beans;
 
 public class Parrot {
-
     private String name;
 
     public String getName() {
@@ -11,5 +10,4 @@ public class Parrot {
     public void setName(String name) {
         this.name = name;
     }
-    
 }

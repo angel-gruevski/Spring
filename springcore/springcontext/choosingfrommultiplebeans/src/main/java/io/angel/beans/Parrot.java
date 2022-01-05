@@ -1,7 +1,6 @@
 package io.angel.beans;
 
 public class Parrot {
-
   private String name = "Koko";
 
   public String getName() {

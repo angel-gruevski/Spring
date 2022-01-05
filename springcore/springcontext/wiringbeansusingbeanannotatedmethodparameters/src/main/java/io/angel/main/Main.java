@@ -2,6 +2,7 @@ package io.angel.main;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import io.angel.beans.Person;
 import io.angel.config.ProjectConfig;
 
 public class Main {

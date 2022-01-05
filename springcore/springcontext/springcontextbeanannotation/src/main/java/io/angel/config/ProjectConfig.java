@@ -3,7 +3,7 @@ package io.angel.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import io.angel.main.Parrot;
+import io.angel.beans.Parrot;
 
 @Configuration
 public class ProjectConfig {

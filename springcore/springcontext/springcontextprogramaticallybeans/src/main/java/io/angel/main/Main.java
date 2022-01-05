@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import io.angel.beans.Parrot;
 import io.angel.config.ProjectConfig;
 
 public class Main {

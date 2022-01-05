@@ -5,7 +5,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import io.angel.beans.Parrot;
-import io.angel.beans.Person;
 
 @Configuration
 @ComponentScan(basePackages = {"io.angel.beans"})

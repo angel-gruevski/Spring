@@ -1,4 +1,4 @@
-package io.angel.main;
+package io.angel.beans;
 
 public class Person {
     private String name;

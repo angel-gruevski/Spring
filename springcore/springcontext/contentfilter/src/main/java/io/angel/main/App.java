@@ -3,6 +3,7 @@ package io.angel.main;
 import java.util.List;
 import java.util.Scanner;
 
+import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -13,7 +14,7 @@ import io.angel.models.Session;
 import io.angel.models.User;
 import io.angel.services.LoginService;
 import io.angel.services.PostService;
-import io.angel.services.RegisterUserService;
+import io.angel.services.UserService;
 
 public class App {
     
@@ -45,72 +46,76 @@ public class App {
     }
 
     static void registerUser(ApplicationContext context) {
-        RegisterUserService registerUser = context.getBean(RegisterUserService.class);
+        UserService registerUser = context.getBean(UserService.class);
         registerUser.requestInformation();
     }
 
     static void login(ApplicationContext context) {
-        Scanner scanner = new Scanner(System.in);
-        LoginService loginService = context.getBean(LoginService.class);
-        loginService.requestInformation();
+        try (Scanner scanner = new Scanner(System.in)) {
+            LoginService loginService = context.getBean(LoginService.class);
+            loginService.requestInformation();
 
-        Session session = context.getBean(Session.class);
-        if(session.getUserSession() != null) {
-            User user = session.getUserSession();
+            Session session = context.getBean(Session.class);
+            if(session.getUserSession() != null) {
+                User user = session.getUserSession();
 
-            
-            while(true) {
-                if(user instanceof Author) {
-                    System.out.println("1 - Get posts");
-                    System.out.println("2 - Create post");
-                    System.out.println("3 - Post a comment");
-                    System.out.println("4 - Get post by ID");
-                    System.out.println("5 - Delete post");
-                    System.out.println("6 - Logoff");
+                
+                while(true) {
+                    if(user instanceof Author) {
+                        System.out.println("1 - Get posts");
+                        System.out.println("2 - Create post");
+                        System.out.println("3 - Post a comment");
+                        System.out.println("4 - Get post by ID");
+                        System.out.println("5 - Delete post");
+                        System.out.println("6 - Logoff");
 
-                    int choice = scanner.nextInt();
+                        int choice = scanner.nextInt();
 
-                    switch(choice) {
-                        case 1:
-                            getPosts(context);
-                            break;
-                        case 2:
-                            createPosts(context);
-                            break;
-                        case 3:
-                            break;
-                        case 4:
-                            getPost(context);
-                            break;
-                        case 5:
-                            deletePost(context);
-                            break;
-                        case 6:
-                            logoff(context);
-                            return;
-                    }
-                } else if(user instanceof User) {
-                    System.out.println("1 - Get posts");
-                    System.out.println("2 - Post a comment");
-                    System.out.println("3 - Get post by ID");
-                    System.out.println("4 - Log off");
+                        switch(choice) {
+                            case 1:
+                                getPosts(context);
+                                break;
+                            case 2:
+                                createPosts(context);
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                getPost(context);
+                                break;
+                            case 5:
+                                deletePost(context);
+                                break;
+                            case 6:
+                                logoff(context);
+                                return;
+                        }
+                    } else if(user instanceof User) {
+                        System.out.println("1 - Get posts");
+                        System.out.println("2 - Post a comment");
+                        System.out.println("3 - Get post by ID");
+                        System.out.println("4 - Log off");
 
-                    int choice = scanner.nextInt();
+                        int choice = scanner.nextInt();
 
-                    switch(choice) {
-                        case 1:
-                            getPosts(context);
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            getPost(context);
-                        case 4:
-                            logoff(context);
-                            return;
+                        switch(choice) {
+                            case 1:
+                                getPosts(context);
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                getPost(context);
+                            case 4:
+                                logoff(context);
+                                return;
+                        }
                     }
                 }
             }
+        } catch (BeansException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 

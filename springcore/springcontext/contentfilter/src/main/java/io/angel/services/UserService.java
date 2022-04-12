@@ -11,7 +11,7 @@ import io.angel.models.Author;
 import io.angel.models.User;
 
 @Component
-public class RegisterUserService {
+public class UserService {
     @Autowired
     private Database database;
     private Scanner scanner = new Scanner(System.in);
